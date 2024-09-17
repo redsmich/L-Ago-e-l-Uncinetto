@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it"></html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,84 +15,63 @@
         </div>
 
         <div class="catalogo">
-        <div class="prodotto">
-            <img src="./bavaglino/1.jfif" alt="Bavaglione 1">
-            <h3>Papà mi adora</h3>
-            <p>Prezzo: €15.00</p>
-        </div>
-        <div class="prodotto">
-            <img src="./bavaglino/2.jfif" alt="Bavaglione 2">
-            <h3>Di padre in figlio</h3>
-        
-            <p>Prezzo: €15.00</p>
+            <div class="prodotto">
+                <div class="slideshow-container">
+                    <img class="image-slide" src="./bavaglino/1.jfif" alt="Bavaglione 1" onclick="openModal(this.src)">
+                    <img class="image-slide" src="./bavaglino/1_2.jfif" alt="Bavaglione 1-2" style="display:none;" onclick="openModal(this.src)">
+                    <div class="arrow prev" onclick="plusSlides(-1)">&#10094;</div>
+                    <div class="arrow next" onclick="plusSlides(1)">&#10095;</div>
+                </div>
+                <h3>Papà mi adora</h3>
+                <p>Prezzo: €15.00</p>
+            </div>
+
+            <!-- Altri prodotti -->
+            <div class="prodotto">
+                <div class="slideshow-container">
+                    <img class="image-slide" src="./bavaglino/2.jfif" alt="Bavaglione 2" onclick="openModal(this.src)">
+                    <img class="image-slide" src="./bavaglino/2_2.jfif" alt="Bavaglione 2-2" style="display:none;" onclick="openModal(this.src)">
+                    <div class="arrow prev" onclick="plusSlides(-1)">&#10094;</div>
+                    <div class="arrow next" onclick="plusSlides(1)">&#10095;</div>
+                </div>
+                <h3>Di padre in figlio</h3>
+                <p>Prezzo: €15.00</p>
+            </div>
+
+            <!-- Continua con gli altri prodotti -->
+
         </div>
 
-        <div class="prodotto">
-            <img src="./bavaglino/3.jfif" alt="Bavaglione 3">
-            <h5>Tolgo il ciuccio solo per baciare zia</h5>
-            <p>Prezzo: €15.00</p>
+        <!-- Modal per l'ingrandimento delle immagini -->
+        <div id="modal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="modal-image">
         </div>
 
-        <div class="prodotto">
-            <img src="./bavaglino/4.jfif" alt="Bavaglione 2">
-            <h4>Sono l'amore di papà</h4>
-            <p>Prezzo: €15.00</p>
-        </div>
+        <script>
+            let slideIndex = 0;
+            let slides = document.getElementsByClassName("image-slide");
 
-        <div class="prodotto">
-            <img src="./bavaglino/5.jfif" alt="Bavaglione 1">
-            <h3>Di padre in figlio</h3>
-            <p>Prezzo: €15.00</p>
-        </div>
-        <div class="prodotto">
-            <img src="./bavaglino/6.jfif" alt="Bavaglione 2">
-            <h3>Di padre in figlio</h3>
-            <p>Prezzo: €15.00</p>
-        </div>
+            function plusSlides(n) {
+                slides[slideIndex].style.display = "none";
+                slideIndex = (slideIndex + n + slides.length) % slides.length;
+                slides[slideIndex].style.display = "block";
+            }
 
-        <div class="prodotto">
-            <img src="./bavaglino/7.jfif" alt="Bavaglione 1">
-            <h4>Mamma mi ha fatto bellissima</h4>
-            <p>Prezzo: €15.00</p>
-        </div>
-        <div class="prodotto">
-            <img src="./bavaglino/8.jfif" alt="Bavaglione 2">
-            <h5>Quando mamma dice di no... vado da nonna</h5>
-            <p>Prezzo: €15.00</p>
-        </div>
+            function openModal(src) {
+                const modal = document.getElementById("modal");
+                const modalImg = document.getElementById("modal-image");
+                modal.style.display = "block";
+                modalImg.src = src;
+            }
 
-        <div class="prodotto">
-            <img src="./bavaglino/9.jpg" alt="Bavaglione 1">
-            <h5>Meno male che ci sono i NONNI!!</h5>
-            <p>Prezzo: €15.00</p>
-        </div>
-        <div class="prodotto">
-            <img src="./bavaglino/10.jpg" alt="Bavaglione 2">
-            <h3>Federico</h3>
-            <p>Prezzo: €15.00</p>
-        </div>
+            function closeModal() {
+                document.getElementById("modal").style.display = "none";
+            }
 
-        <div class="prodotto">
-            <img src="./bavaglino/11.jfif" alt="Bavaglione 1">
-            <h3>Gabriele</h3>
-            <p>Prezzo: €15.00</p>
-        </div>
-
-        <div class="prodotto1">
-            <img src="./bavaglino/12.jfif" alt="Bavaglione 2">
-            <h3>Adam</h3>
-            <p>Prezzo: €15.00</p>
-        </div>
-    
-        <div class="prodotto1">
-            <img src="./bavaglino/13.jfif" alt="Bavaglione 2">
-            <h3>Alma</h3>
-            <p>Prezzo: €15.00</p>
-        </div>
-    </div>
-    
-        
-
-   
-
-        
+            // Avvia il primo slide
+            slides[slideIndex].style.display = "block";
+        </script>
+    </header>
+</body>
+</html>
