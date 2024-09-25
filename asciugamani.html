@@ -1,35 +1,224 @@
 <!DOCTYPE html>
-<html lang="it"></html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asciugamani</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Modal Style */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .prev-modal, .next-modal {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            user-select: none;
+        }
+
+        .prev-modal {
+            left: 0;
+        }
+
+        .next-modal {
+            right: 0;
+        }
+
+        .prev-modal:hover, .next-modal:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Slideshow Style */
+        .slideshow-container {
+            position: relative;
+            max-width: 400px;
+            height: 300px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            user-select: none;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Nasconde l'header */
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Lightbox Modal -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-image">
+        <a class="prev-modal" onclick="plusModalSlides(-1)">&#10094;</a>
+        <a class="next-modal" onclick="plusModalSlides(1)">&#10095;</a>
+    </div>
+
     <header>
         <div class="fixed-header">
             <div class="header-content">
-                <h1>Bavaglioli</h1>
+                <h1>Asciugamani</h1>
             </div>
         </div>
+    </header>
 
-        <div class="catalogo">
-            <div class="prodotto">
-                <div class="slideshow-container">
-                    <div class="slideshow">
-                        <img src="./asciugamano/1.jfif" alt="Bavaglione 1" onclick="openModal(this.src)">
-                        <img src="./asciugamano/1.1.jfif" alt="Bavaglione 2" onclick="openModal(this.src)">
-                    </div>
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                </div>
-                <h3>Asciugamano e segnalibro abbinato</h3>
-                <p>Prezzo: €30.00</p>
+    <div class="catalogo">
+        <!-- Inizio Prodotto 1 -->
+        <div class="prodotto">
+            <div class="slideshow-container">
+                <img class="mySlides" src="./asciugamano/1.jfif" alt="Asciugamano 1" onclick="openModal(this)" loading="lazy">
+                <img class="mySlides" src="./asciugamano/1.1.jfif" alt="Asciugamano 2" onclick="openModal(this)" loading="lazy">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
+            <h3>Asciugamano e segnalibro abbinato</h3>
+            <p>Prezzo: €30.00</p>
         </div>
-    
-        <script src="script.js"></script>
-    </body>
-    </html>
-        
+        <!-- Fine Prodotto 1 -->
+
+        <!-- Inizio Prodotto 2 (puoi aggiungere altri prodotti così) -->
+        <!-- Ripetizione simile per i prodotti successivi -->
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        let modalSlideIndex = 0;
+        let currentSlides = [];
+
+        // Funzione per mostrare una slide nel normale slideshow
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("mySlides");
+            if (n >= slides.length) { slideIndex = 0; }
+            if (n < 0) { slideIndex = slides.length - 1; }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex].style.display = "block";
+        }
+
+        // Funzione per scorrere le slide
+        function plusSlides(n) {
+            slideIndex += n;
+            showSlides(slideIndex);
+        }
+
+        // Funzione per aprire la modal con scorrimento delle immagini
+        function openModal(clickedSlide) {
+            const modal = document.getElementById("modal");
+            const modalImg = document.getElementById("modal-image");
+            const slides = document.getElementsByClassName("mySlides");
+            const header = document.querySelector(".fixed-header");
+
+            // Popoliamo l'array delle slide correnti
+            currentSlides = [...slides];
+            modalSlideIndex = Array.prototype.indexOf.call(slides, clickedSlide);
+            
+            modal.style.display = "block";
+            modalImg.src = currentSlides[modalSlideIndex].src;
+            
+            // Nascondi l'header quando si apre il modal
+            header.classList.add("hidden");
+        }
+
+        // Funzione per chiudere la modal
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            const header = document.querySelector(".fixed-header");
+
+            modal.style.display = "none";
+
+            // Mostra l'header quando il modal si chiude
+            header.classList.remove("hidden");
+        }
+
+        // Funzione per scorrere le slide nel modal
+        function showModalSlides(n) {
+            if (n >= currentSlides.length) { modalSlideIndex = 0; }
+            if (n < 0) { modalSlideIndex = currentSlides.length - 1; }
+
+            const modalImg = document.getElementById("modal-image");
+            modalImg.src = currentSlides[modalSlideIndex].src;
+        }
+
+        // Funzione per scorrere le slide nel modal tramite frecce
+        function plusModalSlides(n) {
+            modalSlideIndex += n;
+            showModalSlides(modalSlideIndex);
+        }
+
+        // Aggiungi evento per chiudere la modal quando si clicca fuori dall'immagine
+        window.onclick = function(event) {
+            const modal = document.getElementById("modal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Inizializza la prima slide
+        showSlides(slideIndex);
+    </script>
+</body>
+</html>
