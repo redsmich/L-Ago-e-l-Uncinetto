@@ -60,41 +60,50 @@ body {
     margin: 80px 10px 10px 50px;
 }
 
-.prodotto{
+.prodotto {
     font-family: "Papyrus", Fantasy; 
-        font-size: 1.5em;
-        color: #5d9b9b;  
-        
+    font-size: 1.5em;
+    color: #5d9b9b;  
+    
     /* Per fare i box che contengono i prodotti */
     border: 5px solid #5d9b9b;
     padding: 10px;
     width: 200px;
-    margin: 20px, 0px, 20px, 20px;
+    margin: 20px 0 20px 20px; /* Corretto il formato della margin */
 }
 
 .prodotto img {
     width: 100%;
+    cursor: pointer; /* Cambia il cursore in manina */
 }
 
-.prodotto1{
+.prodotto1 {
     font-family: "Papyrus", Fantasy; 
-        font-size: 1.5em;
-        color: #5d9b9b;  
-        
+    font-size: 1.5em;
+    color: #5d9b9b;  
+    
     /* Per fare i box che contengono i prodotti */
     border: 5px solid #5d9b9b;
     padding: 10px;
     width: 400px;
-    margin: 20px, 0px, 20px, 20px; /* Spazio tra i box */
+    margin: 20px 0 20px 20px; /* Corretto il formato della margin */
 }
 
-
 .prodotto1 img {
-
     width: 100%; /* Ingrandisce l'immagine del 150% rispetto alla larghezza del box */
     height: auto; /* Mantiene le proporzioni */
     object-fit: cover; /* Garantisce che l'immagine si adatti al contenitore senza distorsioni */
+    cursor: pointer; /* Cambia il cursore in manina */
 }
+
+.prodotto h3, .prodotto h4, .prodotto h5, .prodotto1 h3, .prodotto1 h4, .prodotto1 h5 {
+    pointer-events: none; /* Impedisce l'interazione con il testo */
+}
+
+.prodotto p, .prodotto1 p {
+    pointer-events: none; /* Impedisce l'interazione con il testo del prezzo */
+}
+
 
 .slideshow-container {
     width: 100%;
@@ -143,8 +152,9 @@ body {
 .modal-content {
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 700px;
+    max-width: 90%; /* Imposta una larghezza massima del 90% del viewport */
+    max-height: 80%; /* Imposta un'altezza massima del 80% del viewport */
+    height: auto; /* Mantiene le proporzioni dell'immagine */
 }
 
 .close {
