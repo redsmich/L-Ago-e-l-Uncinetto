@@ -129,8 +129,8 @@
         <!-- Inizio Prodotto 1 -->
         <div class="prodotto">
             <div class="slideshow-container">
-                <img class="mySlides" src="./asciugamano/1.jfif" alt="Asciugamano 1" onclick="openModal(this)" loading="lazy">
-                <img class="mySlides" src="./asciugamano/1.1.jfif" alt="Asciugamano 2" onclick="openModal(this)" loading="lazy">
+                <img class="mySlides" src="./asciugamano/1.jfif" alt="Asciugamano 1" onclick="openModal(this.src, true)" loading="lazy">
+                <img class="mySlides" src="./asciugamano/1.1.jfif" alt="Asciugamano 2" onclick="openModal(this.src, true)" loading="lazy">
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
@@ -139,7 +139,48 @@
         </div>
         <!-- Fine Prodotto 1 -->
 
-        <!-- Inizio Prodotto 2 (puoi aggiungere altri prodotti così) -->
+        <!-- Inizio Prodotto 2 -->
+        <div class="prodotto">
+            <img src="./set asciugamani/1.jfif" alt="Set 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Forza Roma</h3>
+            <p>Prezzo: €50.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asciugamani/2.jfif" alt="Set 2" onclick="openModal(this.src)" loading="lazy">
+            <h3>Fiorellini</h3>
+            <p>Prezzo: €50.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asciugamani/3.jfif" alt="Set 3" onclick="openModal(this.src)" loading="lazy">
+            <h3>Ginevra</h3>
+            <p>Prezzo: €50.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asciugamani/4.jfif" alt="Set 4" onclick="openModal(this.src)" loading="lazy">
+            <h3>Nicolò</h3>
+            <p>Prezzo: €50.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asciugamani/5.jfif" alt="Set 5" onclick="openModal(this.src)" loading="lazy">
+            <h3>Matteo</h3>
+            <p>Prezzo: €50.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asciugamani/6.jfif" alt="Set 6" onclick="openModal(this.src)" loading="lazy">
+            <h3>Noemi</h3>
+            <p>Prezzo: €50.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asciugamani/7.jfif" alt="Set 7" onclick="openModal(this.src)" loading="lazy">
+            <h3>Sofia</h3>
+            <p>Prezzo: €50.00</p>
+        </div>
         <!-- Ripetizione simile per i prodotti successivi -->
     </div>
 
@@ -166,21 +207,27 @@
         }
 
         // Funzione per aprire la modal con scorrimento delle immagini
-        function openModal(clickedSlide) {
+        function openModal(src, isSlideshow = false) {
             const modal = document.getElementById("modal");
             const modalImg = document.getElementById("modal-image");
-            const slides = document.getElementsByClassName("mySlides");
             const header = document.querySelector(".fixed-header");
 
-            // Popoliamo l'array delle slide correnti
-            currentSlides = [...slides];
-            modalSlideIndex = Array.prototype.indexOf.call(slides, clickedSlide);
-            
             modal.style.display = "block";
-            modalImg.src = currentSlides[modalSlideIndex].src;
-            
-            // Nascondi l'header quando si apre il modal
-            header.classList.add("hidden");
+            modalImg.src = src;
+            header.classList.add("hidden"); // Nasconde l'header
+
+            // Mostra o nascondi le frecce a seconda del tipo di immagine
+            if (isSlideshow) {
+                const slides = document.getElementsByClassName("mySlides");
+                currentSlides = [...slides];
+                modalSlideIndex = Array.prototype.indexOf.call(slides, document.querySelector(`.mySlides[src="${src}"]`));
+                document.querySelector(".prev-modal").style.display = "block";
+                document.querySelector(".next-modal").style.display = "block";
+                showModalSlides(modalSlideIndex); // Mostra l'immagine corretta nel modal
+            } else {
+                document.querySelector(".prev-modal").style.display = "none";
+                document.querySelector(".next-modal").style.display = "none";
+            }
         }
 
         // Funzione per chiudere la modal

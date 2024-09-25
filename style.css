@@ -1,11 +1,12 @@
 .catalogo {
     display: flex;
     flex-wrap: wrap;    gap: 20px;
-    margin: 80px 10px 10px 50px;
+    margin: 100px 10px 10px 50px;
 }
 
 .fixed-header {
     
+    font-size: 1.8em;
     font-family:"Fantasy", papyrus;
     padding: 1px 0;
     background-color: #AEC6CF;
@@ -33,7 +34,7 @@ body {
     font-family: "Papyrus", Fantasy; 
     margin-top: 1000px;
     font-size: 1.5em;
-    margin: 100px 75px;
+    margin: 250px 75px;
 
 }
 
@@ -60,11 +61,11 @@ body {
     color: #5d9b9b;
     border: 5px solid #5d9b9b;
     padding: 10px;
-    margin: 20px 0 20px 20px;
+    margin: 20px 80px 20px 80px;
 }
 
 .prodotto {
-    width: 200px;
+    width: 400px;
 }
 
 .prodotto1 {
