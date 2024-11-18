@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set asilo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Lightbox Modal -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
+    <header>
+        <div class="fixed-header">
+            <div class="header-content">
+                <h1>Set asilo</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="catalogo">
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/1.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/2.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/3.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/4.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/5.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/6.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+        
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/7.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/8.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/9.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/10.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/11.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/12.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/13.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+        <div class="prodotto">
+            <img src="./set asilo (sacca asciugamano bavagliolo)/14.jfif" alt="Bavaglione 1" onclick="openModal(this.src)" loading="lazy">
+            <h3>Papà mi adora</h3>
+            <p>Prezzo: €15.00</p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+    });
+
+        // Funzione per aprire la modal
+        function openModal(src) {
+            const modal = document.getElementById("modal");
+            const modalImg = document.getElementById("modal-image");
+            const header = document.querySelector(".fixed-header");
+            modal.style.display = "block";
+            modalImg.src = src;
+            header.classList.add("hidden"); // Nasconde l'header
+        }
+
+        // Funzione per chiudere la modal
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            const header = document.querySelector(".fixed-header");
+            modal.style.display = "none";
+            header.classList.remove("hidden"); // Mostra l'header
+        }
+
+        // Aggiungi evento per chiudere la modal quando si clicca fuori dall'immagine
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("modal")) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
